@@ -1,0 +1,19 @@
+.main {
+    padding: 40px 40px 60px;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    gap: 36px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button {
+    padding: 0;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
