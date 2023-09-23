@@ -29,12 +29,13 @@ const App = () => {
         dispatch(closeModalIngredientDetails());
     };
 
-    React.useEffect(() => {
-        dispatch(getIngredients());
-    }, [dispatch]);
 
     React.useEffect(() => {
         dispatch(checkUserAuth());
+    }, [dispatch]);
+
+    React.useEffect(() => {
+        dispatch(getIngredients());
     }, [dispatch]);
 
   return (

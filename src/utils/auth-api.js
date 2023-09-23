@@ -85,7 +85,6 @@ export const getDataUser = () => {
             "Content-Type": "application/json",
         },
     })
-        .then((res) => checkResponse(res));
 }
 
 export const updateDataUser = (data) => {

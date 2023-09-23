@@ -125,6 +125,7 @@ export const register = (data) => {
                     type: REGISTER_SUCCESS,
                     data: res.user
                 });
+                dispatch(setAuthChecked(true));
             })
             .catch(() => {
                 dispatch({
