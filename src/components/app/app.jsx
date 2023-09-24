@@ -39,40 +39,37 @@ const App = () => {
     }, [dispatch]);
 
   return (
-      <>
-          <div className={styles.app}>
-                      <AppHeader />
-                      <main className={styles.main}>
-                        <Routes location={background || location}>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/login" element={<OnlyUnAuth component={<LoginPage/>}/>}/>
-                            <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage/>}/>}/>
-                            <Route path="/forgot-password" element={<OnlyUnAuth component={<PasswordForgotPage/>}/>}/>
-                            <Route path="/reset-password" element={<OnlyUnAuth component={<PasswordResetPage/>}/>}/>
-                            <Route path="/profile" element={<OnlyAuth component={<ProfilePage/>}/>}>
-                                <Route index element={<Profile />} />
-                            </Route>
-                            <Route path="/profile/orders" />
-                            <Route path='/ingredients/:id' element={<InfoIngredientPage />} />
-                            <Route path="/feed" />
-                            <Route path="*" element={<NotFound404 />} />
-                        </Routes>
-                      </main>
-              {background && (
-                  <Routes>
-                      <Route
-                          path='/ingredients/:id'
-                          element={
-                              <Modal closeModal={closeModal}>
-                                  <IngredientDetails closeModal={closeModal} />
-                              </Modal>
-                          }
+      <div className={styles.app}>
+          <AppHeader />
+          <main className={styles.main}>
+              <Routes location={background || location}>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<OnlyUnAuth component={<LoginPage/>}/>}/>
+                  <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage/>}/>}/>
+                  <Route path="/forgot-password" element={<OnlyUnAuth component={<PasswordForgotPage/>}/>}/>
+                  <Route path="/reset-password" element={<OnlyUnAuth component={<PasswordResetPage/>}/>}/>
+                  <Route path="/profile" element={<OnlyAuth component={<ProfilePage/>}/>}>
+                      <Route index element={<Profile />} />
+                  </Route>
+                  <Route path="/profile/orders" />
+                  <Route path='/ingredients/:id' element={<InfoIngredientPage />} />
+                  <Route path="/feed" />
+                  <Route path="*" element={<NotFound404 />} />
+              </Routes>
+          </main>
+          {background && (
+              <Routes>
+                  <Route
+                      path='/ingredients/:id'
+                      element={
+                      <Modal closeModal={closeModal}>
+                          <IngredientDetails closeModal={closeModal} />
+                      </Modal>
+                  }
                       />
-                  </Routes>
-              )}
-          </div>
-      </>
-
+              </Routes>
+          )}
+      </div>
   );
 }
 

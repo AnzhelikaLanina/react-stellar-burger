@@ -25,9 +25,6 @@ export const getOrderNumber = (data) => {
                 dispatch({
                     type: GET_ORDER_ERROR
                 });
-                dispatch({
-                    type: RESET_CONSTRUCTOR
-                });
             })
     }
 }
