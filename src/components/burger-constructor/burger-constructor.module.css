@@ -1,0 +1,46 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    padding-top: 100px;
+}
+
+.box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: scroll;
+    max-height: 440px;
+    padding-right: 8px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 584px;
+}
+
+.caption {
+    display: flex;
+    flex-direction: row;
+    gap: 9.5px;
+    align-items: center;
+}
+
+.element {
+    padding-top: 40px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: flex-end;
+}
+
+.lockIngredient {
+    display: flex;
+    flex-direction: column;
+    padding-right: 16px;
+    align-items: flex-end;
+}
+
