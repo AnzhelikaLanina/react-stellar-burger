@@ -1,5 +1,5 @@
 import styles from './feed-page.module.css';
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OrderCard from "../../components/order-card/order-card";
 import {wsOrderConnect, wsOrderDisconnect} from "../../services/actions/order-feed";
