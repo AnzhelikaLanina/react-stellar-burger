@@ -44,7 +44,7 @@ const AppHeader = () => {
                         </NavLink>
                     </li>
                 </ul>
-                <NavLink to='/'>
+                <NavLink to='/' className={styles.logo}>
                     <Logo />
                 </NavLink>
                 <div>

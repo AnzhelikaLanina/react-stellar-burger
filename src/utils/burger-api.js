@@ -21,3 +21,13 @@ export const postOrder = (data) => {
     })
         .then((res) => checkResponse(res));
 }
+
+export const getOrderInfoData = (order) => {
+    return fetch(`${NORMA_API}/orders/${order}`,{
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+})
+.then((res) => checkResponse(res));
+}

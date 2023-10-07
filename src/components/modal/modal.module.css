@@ -10,12 +10,12 @@
     justify-items: center;
     justify-content: space-around;
     align-items: center;
-    z-index: 1;
+    z-index: 100;
 }
 
 .container {
     max-width: 720px;
     border-radius: 40px;
     background: #1C1C21;
-    z-index: 2;
+    z-index: 102;
 }
