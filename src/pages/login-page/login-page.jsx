@@ -4,18 +4,15 @@ import styles from "../page.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../services/actions/auth";
+import {useForm} from "../../hooks/useForm";
 
 const LoginPage = () => {
     const dispatch = useDispatch();
-    const [form, setForm] = React.useState({ email: "", password: "" });
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const {values, handleChange} = useForm({email: "", password: ""});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(login(form));
+        dispatch(login(values));
     };
 
     return (
@@ -25,12 +22,12 @@ const LoginPage = () => {
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <EmailInput
                         onChange={handleChange}
-                        value={form.email}
+                        value={values.email}
                         name={'email'}
                     />
                     <PasswordInput
                         onChange={handleChange}
-                        value={form.password}
+                        value={values.password}
                         name={'password'}
                     />
                     <Button htmlType="submit" type="primary" size="large">

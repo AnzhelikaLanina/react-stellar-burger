@@ -10,12 +10,13 @@ import { addIngredient, moveIngredient, removeIngredient } from "../../services/
 import { useDrop } from "react-dnd";
 import BurgerConstructorElement from "../burger-constructor-element/burger-constructor-element";
 import { useNavigate } from "react-router-dom";
+import Loader from "../loader/loader";
 
 const BurgerConstructor = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { ingredientsBurgerConstructor } = useSelector(store => store.constructor);
-    const { orderNumber, orderError  } = useSelector(store => store.order);
+    const { orderNumber, orderError, orderRequest  } = useSelector(store => store.order);
 
     const bun =  React.useMemo(
         () =>
@@ -144,6 +145,12 @@ const BurgerConstructor = () => {
                 <Modal
                     closeModal={closeModalOrder}>
                     <OrderDetails closeModal={closeModalOrder} />
+                </Modal>
+            }
+            { !orderNumber && orderRequest &&
+                <Modal
+                    closeModal={closeModalOrder}>
+                    <Loader />
                 </Modal>
             }
         </>

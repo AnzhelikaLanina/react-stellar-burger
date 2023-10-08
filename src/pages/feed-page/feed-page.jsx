@@ -42,7 +42,7 @@ const FeedPage = () => {
                         <div className={styles.element}>
                             <h2 className="text text_type_main-medium">Готовы:</h2>
                             <ul className={styles.list}>
-                                {orders && doneList && doneList.map((order, i) =>
+                                {doneList && doneList.map((order, i) =>
                                     <li key={i} className={`text text_type_digits-default ${styles.status_done}`}>{order}</li>
                                 )}
                             </ul>
@@ -50,7 +50,7 @@ const FeedPage = () => {
                         <div className={styles.element}>
                             <h2 className="text text_type_main-medium">В работе:</h2>
                             <ul className={styles.list}>
-                                {orders && pendingList && pendingList.map((order, i) =>
+                                {pendingList && pendingList.map((order, i) =>
                                     <li key={i} className="text text_type_digits-default">{order}</li>
                                 )}
                             </ul>

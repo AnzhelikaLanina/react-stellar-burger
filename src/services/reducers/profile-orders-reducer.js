@@ -7,7 +7,7 @@ import {
 
 const initialState = {
     status: false,
-    ordersData: null,
+    ordersData: [],
     connectingError: ''
 }
 
