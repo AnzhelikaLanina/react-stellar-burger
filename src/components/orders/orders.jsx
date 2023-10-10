@@ -2,7 +2,6 @@ import styles from './orders.module.css';
 import React, {useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import OrderCard from "../order-card/order-card";
-import {wsFeedOrdersUserUrl} from "../../utils/constants";
 import {wsProfileOrdersConnect, wsProfileOrdersDisconnect} from "../../services/actions/profile-orders";
 
 const Orders = () => {
