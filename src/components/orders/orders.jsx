@@ -10,6 +10,8 @@ const Orders = () => {
     const { orders } = useSelector(state => state.profileOrders.ordersData);
 
     useEffect(() => {
+        const accessToken = localStorage.getItem('accessToken') ? localStorage.getItem('accessToken').slice(7) : '';
+        const wsFeedOrdersUserUrl = `wss://norma.nomoreparties.space/orders?token=${accessToken}`;
         dispatch(wsProfileOrdersConnect(wsFeedOrdersUserUrl));
         return () => {
             dispatch(wsProfileOrdersDisconnect());

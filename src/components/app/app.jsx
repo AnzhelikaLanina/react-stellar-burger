@@ -57,7 +57,6 @@ const App = () => {
                       <Route path="/profile/orders" element={<OnlyAuth component={ <Orders />} />} />
                   </Route>
                   <Route path="/profile/orders/:id" element={<OnlyAuth component={ <OrderInfoPage />} />} />
-                  <Route path="/profile/orders" />
                   <Route path='/ingredients/:id' element={<InfoIngredientPage />} />
                   <Route path="/feed" element={<FeedPage />} />
                   <Route path="/feed/:id" element={<OrderInfoPage />} />
