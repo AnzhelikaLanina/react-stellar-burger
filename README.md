@@ -32,6 +32,7 @@
 * Маршрутизация
 * Авторизация
 * WebSocket
+* TypeScript
 
 ## Figma
 
