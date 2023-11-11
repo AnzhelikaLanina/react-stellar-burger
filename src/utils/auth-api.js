@@ -1,8 +1,7 @@
-import { checkResponse } from "./utils";
+import {checkResponse, request} from "./utils";
 import { NORMA_API } from "./constants";
 
-export const registerUser = (data) => {
-    return fetch(`${NORMA_API}/auth/register`, {
+export const registerUser = (data) => request('/auth/register', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -13,11 +12,8 @@ export const registerUser = (data) => {
             name: data.name
         }),
     })
-        .then((res) => checkResponse(res));
-}
 
-export const loginProfile = (data) => {
-    return fetch(`${NORMA_API}/auth/login`, {
+export const loginProfile = (data) => request('/auth/login',{
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -27,11 +23,8 @@ export const loginProfile = (data) => {
             password: data.password
         }),
     })
-        .then((res) => checkResponse(res));
-}
 
-export const logoutProfile = (data) => {
-    return fetch(`${NORMA_API}/auth/logout`, {
+export const logoutProfile = (data) => request('/auth/logout', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -40,11 +33,8 @@ export const logoutProfile = (data) => {
             token: data
         }),
     })
-        .then((res) => checkResponse(res));
-}
 
-export const refreshToken = () => {
-    return fetch(`${NORMA_API}/auth/token`, {
+export const refreshToken = () => request('/auth/token', {
         method: "POST",
         headers: {
             "Content-Type": "application/json;charset=utf-8",
@@ -53,8 +43,6 @@ export const refreshToken = () => {
             token: localStorage.getItem("refreshToken"),
         }),
     })
-        .then((res) => checkResponse(res));
-};
 
 export const fetchWithRefresh = async (url, options) => {
     try {
@@ -100,11 +88,9 @@ export const updateDataUser = (data) => {
             password: data.password
         } ),
     })
-        .then((res) => checkResponse(res));
 }
 
-export const forgotPasswordUser = (data) => {
-    return fetch(`${NORMA_API}/password-reset`, {
+export const forgotPasswordUser = (data) => request('/password-reset', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -113,11 +99,8 @@ export const forgotPasswordUser = (data) => {
             email: data.email
         } ),
     })
-        .then((res) => checkResponse(res));
-}
 
-export const resetPasswordUser = (data) => {
-    return fetch(`${NORMA_API}/password-reset/reset`, {
+export const resetPasswordUser = (data) => request('/password-reset/reset', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -127,5 +110,3 @@ export const resetPasswordUser = (data) => {
             token: data.token
         } ),
     })
-        .then((res) => checkResponse(res));
-}

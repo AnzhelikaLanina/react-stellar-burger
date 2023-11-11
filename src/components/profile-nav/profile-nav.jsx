@@ -1,5 +1,5 @@
 import styles from "./profile-nav.module.css";
-import {NavLink} from "react-router-dom";
+import {NavLink, useLocation} from "react-router-dom";
 import React from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../services/actions/auth";
@@ -9,12 +9,15 @@ const ProfileNav = () => {
         dispatch(logout(localStorage.getItem('refreshToken')));
     }
 
+    const location = useLocation();
+
     return (
         <nav className={styles.nav}>
             <ul className={styles.links}>
                 <li>
                     <NavLink
                         to='/profile'
+                        end
                         className={({ isActive }) =>
                             `text text_type_main-medium + ${styles.link} + ${isActive ? styles.link_active : ''}`
                         }>
@@ -34,7 +37,10 @@ const ProfileNav = () => {
                     <button type={"button"} className={`text text_type_main-medium ${styles.button}`} onClick={onLogout}>Выход</button>
                 </li>
             </ul>
-            <p className={`text text_type_main-default ${styles.caption}`}>В этом разделе вы можете изменить свои персональные данные</p>
+            {location.pathname === '/profile' ?
+                <p className={`text text_type_main-default ${styles.caption}`}>В этом разделе вы можете изменить свои персональные данные</p> :
+                location.pathname === '/profile/orders' ?  <p className={`text text_type_main-default ${styles.caption}`}>В этом разделе вы можете просмотреть свою историю заказов</p> : ""
+            }
         </nav>
     )
 }

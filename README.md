@@ -31,6 +31,7 @@
 * Drag and Drop
 * Маршрутизация
 * Авторизация
+* WebSocket
 
 ## Figma
 

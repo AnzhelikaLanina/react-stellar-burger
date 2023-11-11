@@ -3,25 +3,26 @@ import { Button, EmailInput, Input, PasswordInput } from "@ya.praktikum/react-de
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateUser } from "../../services/actions/auth";
+import {useForm} from "../../hooks/useForm";
 
 const Profile = () => {
     const dispatch = useDispatch();
     const { user } = useSelector(store => store.auth);
-    const [form, setForm] = React.useState({ name: user.name, email: user.email, password: "" });
+    const {values, setValues} = useForm({name: user.name, email: user.email, password: "" });
     const [buttons, setButtons] = useState(false);
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        setValues({ ...values, [e.target.name]: e.target.value });
         setButtons(true);
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(updateUser(form));
+        dispatch(updateUser(values));
         setButtons(false);
     };
 
     const resetForm = () => {
-        setForm({ name: user.name, email: user.email, password: "" });
+        setValues({ name: user.name, email: user.email, password: "" });
         setButtons(false);
     }
 
@@ -37,7 +38,7 @@ const Profile = () => {
                 placeholder={'Имя'}
                 onChange={handleChange}
                 icon='EditIcon'
-                value={form.name}
+                value={values.name}
                 name={'name'}
                 error={false}
                 errorText={'Ошибка'}
@@ -47,14 +48,14 @@ const Profile = () => {
             />
             <EmailInput
                 onChange={handleChange}
-                value={form.email}
+                value={values.email}
                 name={'email'}
                 placeholder={'Логин'}
                 icon='EditIcon'
             />
             <PasswordInput
                 onChange={handleChange}
-                value={form.password}
+                value={values.password}
                 name={'password'}
                 placeholder={'Пароль'}
                 icon='EditIcon'

@@ -4,19 +4,16 @@ import styles from "../page.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { forgotPassword } from "../../services/actions/auth";
+import {useForm} from "../../hooks/useForm";
 
 const PasswordForgotPage = () => {
-    const [form, setForm] = React.useState({ email: ""});
+    const {values, handleChange} = useForm({email: ""});
     const navigate = useNavigate();
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
 
     const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(forgotPassword(form.email));
+        dispatch(forgotPassword(values.email));
     };
 
     const isPasswordChanged = useSelector((store) => store.auth.isPasswordChanged);
@@ -34,7 +31,7 @@ const PasswordForgotPage = () => {
                 <form className={styles.form} onSubmit={handleSubmit}>
                     <EmailInput
                         onChange={handleChange}
-                        value={form.email}
+                        value={values.email}
                         name={'email'}
                         placeholder={'Укажите e-mail'}
                     />

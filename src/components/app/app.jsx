@@ -17,6 +17,10 @@ import AppHeader from "../app-header/app-header";
 import Modal from "../modal/modal";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Profile from "../profile/profile";
+import Orders from "../orders/orders";
+import FeedPage from "../../pages/feed-page/feed-page";
+import OrderInfoMain from "../order-info-main/order-info-main";
+import OrderInfoPage from "../../pages/order-info-page/order-info-page";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -39,40 +43,55 @@ const App = () => {
     }, [dispatch]);
 
   return (
-      <>
-          <div className={styles.app}>
-                      <AppHeader />
-                      <main className={styles.main}>
-                        <Routes location={background || location}>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/login" element={<OnlyUnAuth component={<LoginPage/>}/>}/>
-                            <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage/>}/>}/>
-                            <Route path="/forgot-password" element={<OnlyUnAuth component={<PasswordForgotPage/>}/>}/>
-                            <Route path="/reset-password" element={<OnlyUnAuth component={<PasswordResetPage/>}/>}/>
-                            <Route path="/profile" element={<OnlyAuth component={<ProfilePage/>}/>}>
-                                <Route index element={<Profile />} />
-                            </Route>
-                            <Route path="/profile/orders" />
-                            <Route path='/ingredients/:id' element={<InfoIngredientPage />} />
-                            <Route path="/feed" />
-                            <Route path="*" element={<NotFound404 />} />
-                        </Routes>
-                      </main>
-              {background && (
-                  <Routes>
-                      <Route
-                          path='/ingredients/:id'
-                          element={
-                              <Modal closeModal={closeModal}>
-                                  <IngredientDetails closeModal={closeModal} />
-                              </Modal>
-                          }
-                      />
-                  </Routes>
-              )}
-          </div>
-      </>
-
+      <div className={styles.app}>
+          <AppHeader />
+          <main className={styles.main}>
+              <Routes location={background || location}>
+                  <Route path="/" element={<HomePage />} />
+                  <Route path="/login" element={<OnlyUnAuth component={<LoginPage/>}/>}/>
+                  <Route path="/register" element={<OnlyUnAuth component={<RegistrationPage/>}/>}/>
+                  <Route path="/forgot-password" element={<OnlyUnAuth component={<PasswordForgotPage/>}/>}/>
+                  <Route path="/reset-password" element={<OnlyUnAuth component={<PasswordResetPage/>}/>}/>
+                  <Route path="/profile" element={<OnlyAuth component={<ProfilePage/>}/>}>
+                      <Route index element={<OnlyAuth component={ <Profile />} />} />
+                      <Route path="/profile/orders" element={<OnlyAuth component={ <Orders />} />} />
+                  </Route>
+                  <Route path="/profile/orders/:id" element={<OnlyAuth component={ <OrderInfoPage />} />} />
+                  <Route path='/ingredients/:id' element={<InfoIngredientPage />} />
+                  <Route path="/feed" element={<FeedPage />} />
+                  <Route path="/feed/:id" element={<OrderInfoPage />} />
+                  <Route path="*" element={<NotFound404 />} />
+              </Routes>
+          </main>
+          {background && (
+              <Routes>
+                  <Route
+                      path='/ingredients/:id'
+                      element={
+                      <Modal closeModal={closeModal}>
+                          <IngredientDetails closeModal={closeModal} />
+                      </Modal>
+                  }
+                  />
+                  <Route
+                      path='/feed/:id'
+                      element={
+                          <Modal closeModal={closeModal}>
+                              <OrderInfoMain closeModal={closeModal} />
+                          </Modal>
+                      }
+                  />
+                  <Route
+                      path='/profile/orders/:id'
+                      element={
+                          <Modal closeModal={closeModal}>
+                              <OrderInfoMain closeModal={closeModal} />
+                          </Modal>
+                      }
+                  />
+              </Routes>
+          )}
+      </div>
   );
 }
 

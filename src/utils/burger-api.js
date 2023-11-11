@@ -1,23 +1,18 @@
 import {NORMA_API} from "./constants";
-import {checkResponse} from "./utils";
+import {fetchWithRefresh} from "./auth-api";
+import {request} from './utils';
 
-export const getIngredientsData = () => {
-    return fetch(`${NORMA_API}/ingredients`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json"
-        },
-    })
-        .then((res) => checkResponse(res));
-}
+export const getIngredientsData = () => request('/ingredients');
 
 export const postOrder = (data) => {
-    return fetch(`${NORMA_API}/orders`, {
+    return fetchWithRefresh(`${NORMA_API}/orders`, {
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem('accessToken')
         },
         body: JSON.stringify({ ingredients: data }),
     })
-        .then((res) => checkResponse(res));
 }
+
+export const getOrderInfoData = (order) => request(`/orders/${order}`);

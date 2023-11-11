@@ -4,18 +4,15 @@ import styles from "../page.module.css";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { register } from "../../services/actions/auth";
+import {useForm} from "../../hooks/useForm";
 
 const RegistrationPage = () => {
     const dispatch = useDispatch();
-    const [form, setForm] = React.useState({ name: "", email: "", password: "" });
-
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
+    const {values, handleChange} = useForm({name: "", email: "", password: ""});
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(register(form));
+        dispatch(register(values));
     };
 
     return (
@@ -27,18 +24,18 @@ const RegistrationPage = () => {
                         type={'text'}
                         placeholder={'Имя'}
                         onChange={handleChange}
-                        value={form.name}
+                        value={values.name}
                         name={'name'}
                         size={'default'}
                     />
                     <EmailInput
                         onChange={handleChange}
-                        value={form.email}
+                        value={values.email}
                         name={'email'}
                     />
                     <PasswordInput
                         onChange={handleChange}
-                        value={form.password}
+                        value={values.password}
                         name={'password'}
                     />
                     <Button htmlType="submit" type="primary" size="large" >

@@ -4,11 +4,12 @@ import styles from "../page.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { resetPassword } from "../../services/actions/auth";
+import {useForm} from "../../hooks/useForm";
 
 const PasswordResetPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [form, setForm] = React.useState({ password: "", token: "" });
+    const {values, handleChange} = useForm({password: "", token: "" });
     const isPasswordChanged = useSelector((store) => store.auth.isPasswordChanged);
 
     useEffect(() => {
@@ -17,14 +18,9 @@ const PasswordResetPage = () => {
         }
     }, [navigate, isPasswordChanged]);
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-
-    };
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(resetPassword(form));
+        dispatch(resetPassword(values));
         navigate('/login');
     };
 
@@ -36,14 +32,14 @@ const PasswordResetPage = () => {
                     <PasswordInput
                         onChange={handleChange}
                         placeholder={'Введите новый пароль'}
-                        value={form.password}
+                        value={values.password}
                         name={'password'}
                     />
                     <Input
                         type={'text'}
                         placeholder={'Введите код из письма'}
                         onChange={handleChange}
-                        value={form.token}
+                        value={values.token}
                         name={'token'}
                         size={'default'}
                     />
